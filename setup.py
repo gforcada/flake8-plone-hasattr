@@ -21,7 +21,6 @@ setup(
     classifiers=[
         'Development Status :: 3 - Alpha',
         "Framework :: Plone",
-        "Framework :: Plone :: 4.3",
         "License :: OSI Approved :: GNU General Public License v2 (GPLv2)",
         "Operating System :: OS Independent",
         'Programming Language :: Python',
