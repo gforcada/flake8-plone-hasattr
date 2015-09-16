@@ -16,6 +16,8 @@ which in your normal business logic you really don't want to.
 Specially in Plone context that could mean swallowing a database error,
 or a permission exception, etc.
 
+This plugin is based on a python checker that was in `plone.recipe.codeanalysis`_.
+
 Install
 -------
 Install with pip::
@@ -30,3 +32,5 @@ Requirements
 License
 -------
 GPL 2.0
+
+.. _`plone.recipe.codeanalysis`: https://pypi.python.org/pypi/plone.recipe.codeanalysis
