@@ -1,6 +1,6 @@
 .. -*- coding: utf-8 -*-
 
-flake8-plone-api Copyright 2015, Gil Forcada
+flake8-plone-hasattr Copyright 2015, Gil Forcada
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License version 2
