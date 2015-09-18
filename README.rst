@@ -16,11 +16,38 @@ which in your normal business logic you really don't want to.
 Specially in Plone context that could mean swallowing a database error,
 or a permission exception, etc.
 
+Take, for instance, the following code:
+
+.. code-block:: python
+
+    >>> class Foo(object):
+    ...     @property
+    ...     def my_attr(self):
+    ...         raise ValueError('nope, nope, nope')
+    ...
+    >>> bar = Foo()
+    >>> bar.my_attr
+    Traceback (most recent call last):
+      File "<stdin>", line 1, in <module>
+      File "<stdin>", line 4, in my_attr
+    ValueError: nope, nope, nope
+    >>> hasattr(Foo, 'my_attr')
+    True
+    >>> hasattr(bar, 'my_attr')
+    False
+    >>> getattr(bar, 'my_attr', None)
+    Traceback (most recent call last):
+      File "<stdin>", line 1, in <module>
+      File "<stdin>", line 4, in my_attr
+    ValueError: nope, nope, nope
+
 This plugin is based on a python checker that was in `plone.recipe.codeanalysis`_.
 
 Install
 -------
-Install with pip::
+Install with pip:
+
+.. code-block:: console
 
     $ pip install flake8-plone-hasattr
 
