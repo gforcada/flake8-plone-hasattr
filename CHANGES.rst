@@ -6,7 +6,8 @@ Changelog
 0.2 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- added support for sublimetext (stdin/filename handling)
+  [iham]
 
 
 0.1 (2015-09-15)
