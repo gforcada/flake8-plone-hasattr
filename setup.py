@@ -11,7 +11,6 @@ long_description = '{0}\n{1}'.format(
     open('CHANGES.rst').read()
 )
 
-
 setup(
     name='flake8-plone-hasattr',
     version='0.2.dev0',
@@ -21,6 +20,8 @@ setup(
     classifiers=[
         'Development Status :: 3 - Alpha',
         "Framework :: Plone",
+        'Framework :: Plone :: 4.3',
+        'Framework :: Plone :: 5.0',
         "License :: OSI Approved :: GNU General Public License v2 (GPLv2)",
         "Operating System :: OS Independent",
         'Programming Language :: Python',
@@ -29,6 +30,7 @@ setup(
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.3',
         'Programming Language :: Python :: 3.4',
+        'Programming Language :: Python :: 3.5',
         'Topic :: Software Development',
     ],
     keywords='pep8 flake8 plone',
@@ -38,12 +40,14 @@ setup(
     license='GPL version 2',
     py_modules=['flake8_plone_hasattr', ],
     include_package_data=True,
-    test_suite = 'run_tests',
+    test_suite='run_tests',
     zip_safe=False,
     install_requires=[
         'flake8',
     ],
     entry_points={
-        'flake8.extension': ['P00 = flake8_plone_hasattr:PloneHasattrChecker'],
+        'flake8.extension': [
+            'P002 = flake8_plone_hasattr:PloneHasattrChecker',
+        ],
     },
 )
