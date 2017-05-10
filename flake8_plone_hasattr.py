@@ -18,7 +18,6 @@ class PloneHasattrChecker(object):
 
     def __init__(self, tree, filename):
         self.filename = filename
-        self.tree = tree
 
     def run(self):
         if self.filename == 'stdin':
