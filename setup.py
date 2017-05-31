@@ -19,7 +19,8 @@ setup(
     long_description=long_description,
     # Get more from http://pypi.python.org/pypi?%3Aaction=list_classifiers
     classifiers=[
-        'Development Status :: 3 - Alpha',
+        'Development Status :: 5 - Production/Stable',
+        "Framework :: Flake8",
         "Framework :: Plone",
         "License :: OSI Approved :: GNU General Public License v2 (GPLv2)",
         "Operating System :: OS Independent",
@@ -27,8 +28,7 @@ setup(
         'Programming Language :: Python :: 2',
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.3',
-        'Programming Language :: Python :: 3.4',
+        'Programming Language :: Python :: 3.6',
         'Topic :: Software Development',
     ],
     keywords='pep8 flake8 plone',
@@ -38,12 +38,14 @@ setup(
     license='GPL version 2',
     py_modules=['flake8_plone_hasattr', ],
     include_package_data=True,
-    test_suite = 'run_tests',
+    test_suite='run_tests',
     zip_safe=False,
     install_requires=[
         'flake8',
     ],
     entry_points={
-        'flake8.extension': ['P00 = flake8_plone_hasattr:PloneHasattrChecker'],
+        'flake8.extension': [
+            'P002 = flake8_plone_hasattr:PloneHasattrChecker',
+        ],
     },
 )
