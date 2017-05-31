@@ -5,16 +5,13 @@ Changelog
 
 0.3 (unreleased)
 ----------------
-
-- Nothing changed yet.
-
+- Release universal wheels
+  [gforcada]
 
 0.2 (2017-05-31)
 ----------------
-
-- added support for sublimetext (stdin/filename handling)
+- Added support for sublimetext (stdin/filename handling)
   [iham]
-
 
 0.1 (2015-09-15)
 ----------------
