@@ -3,7 +3,7 @@
 Changelog
 =========
 
-0.2 (unreleased)
+0.2 (2017-05-31)
 ----------------
 
 - added support for sublimetext (stdin/filename handling)
