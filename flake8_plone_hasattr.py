@@ -14,7 +14,7 @@ HASATTR_RE = re.compile(r'(^|.*\s)(?P<h>hasattr)\(.+\).*')
 class PloneHasattrChecker(object):
     name = 'flake8_plone_hasattr'
     version = '0.2'
-    message = 'P002 found "hasattr", consider replacing it'
+    message = 'P002 found "hasattr", consider replacing it with "getattr" to avoid exception swallowing'
 
     def __init__(self, tree, filename):
         self.filename = filename
