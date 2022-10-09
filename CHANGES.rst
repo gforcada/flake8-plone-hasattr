@@ -6,8 +6,9 @@ Changelog
 0.3 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Pin dependencies. [gforcada]
 
+- Test/QA with GitHub actions. [gforcada]
 
 0.2.post0 (2017-05-31)
 ----------------------
