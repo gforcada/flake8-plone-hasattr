@@ -1,60 +1,83 @@
-# -*- coding: utf-8 -*-
-from flake8_plone_hasattr import PloneHasattrChecker
-from tempfile import mkdtemp
-
 import os
-import mock
-import unittest
+import textwrap
+from unittest import mock
+
+from flake8_plone_hasattr import PloneHasattrChecker
 
 
-class TestFlake8PloneAPI(unittest.TestCase):
-
-    def _given_a_file_in_test_dir(self, contents):
-        test_dir = os.path.realpath(mkdtemp())
-        file_path = os.path.join(test_dir, 'test.py')
-        with open(file_path, 'w') as a_file:
-            a_file.write(contents)
-
-        return file_path
-
-    def test_no_hasattr_everything_is_fine(self):
-        file_path = self._given_a_file_in_test_dir(
-            'import os'
-        )
-        checker = PloneHasattrChecker(None, file_path)
-        ret = list(checker.run())
-        self.assertEqual(len(ret), 0)
-
-    def test_hasattr(self):
-        file_path = self._given_a_file_in_test_dir(
-            'a = 3\n'
-            '\n'
-            '    hasattr(a, "max")\n'
-        )
-        checker = PloneHasattrChecker(None, file_path)
-        ret = list(checker.run())
-        self.assertEqual(len(ret), 1)
-        self.assertEqual(ret[0][0], 3)
-        self.assertEqual(ret[0][1], 4)
-        self.assertTrue(ret[0][2].startswith('P002 found '))
-
-    @mock.patch('flake8_plone_hasattr.stdin_utils.stdin_get_value')
-    def test_stdin(self, stdin_get_value):
-        stdin_value = mock.Mock()
-        stdin_value.splitlines.return_value = [
-            'a = 3\n',
-            '\n',
-            '    hasattr(a, "max")\n',
-        ]
-        stdin_get_value.return_value = stdin_value
-
-        checker = PloneHasattrChecker(None, 'stdin')
-        ret = list(checker.run())
-        self.assertEqual(len(ret), 1)
-        self.assertEqual(ret[0][0], 3)
-        self.assertEqual(ret[0][1], 4)
-        self.assertTrue(ret[0][2].startswith('P002 found '))
+def write_python_file(tmpdir, content):
+    source = textwrap.dedent(content)
+    file_path = os.path.join(str(tmpdir), 'test.py')
+    with open(file_path, 'w') as python_file:
+        python_file.write(source)
+    return file_path
 
 
-if __name__ == '__main__':
-    unittest.main()
+def check_code(source, tmpdir, expected_codes=None):
+    """Check if the given source code generates the given flake8 errors
+
+    If `expected_codes` is a string is converted to a list,
+    if it is not given, then it is expected to **not** generate any error.
+    """
+    if isinstance(expected_codes, str):
+        expected_codes = [expected_codes]
+    elif expected_codes is None:
+        expected_codes = []
+
+    file_path = write_python_file(tmpdir, source)
+    checker = PloneHasattrChecker(None, file_path)
+    return_values = list(checker.run())
+
+    assert len(return_values) == len(expected_codes)
+    for item, code in zip(return_values, expected_codes):
+        assert item[2].startswith(f'{code} ')
+
+
+def test_all_good(tmpdir):
+    source = 'import os'
+    check_code(source, tmpdir)
+
+
+def test_error(tmpdir):
+    source = 'hasattr("foo")'
+    check_code(source, tmpdir, 'P002')
+
+
+def test_line(tmpdir):
+    source = """
+    a = 3
+    hasattr(a, "max")
+    """
+    file_path = write_python_file(tmpdir, source)
+    checker = PloneHasattrChecker(None, file_path)
+    return_values = list(checker.run())
+
+    assert return_values[0][0] == 3
+
+
+def test_column(tmpdir):
+    source = """
+    class MyObject:
+        def my_function(self):
+            hasattr(a, "max")
+    """
+    file_path = write_python_file(tmpdir, source)
+    checker = PloneHasattrChecker(None, file_path)
+    return_values = list(checker.run())
+
+    assert return_values[0][1] == 8
+
+
+@mock.patch('flake8_plone_hasattr.stdin_utils.stdin_get_value')
+def test_stdin(stdin_get_value):
+    source = """
+    a = 3
+    hasattr(a, "max")
+    """
+    stdin_value = mock.Mock()
+    stdin_value.splitlines.return_value = textwrap.dedent(source).split('\n')
+    stdin_get_value.return_value = stdin_value
+
+    checker = PloneHasattrChecker(None, 'stdin')
+    return_values = list(checker.run())
+    assert len(return_values) == 1
