@@ -17,7 +17,7 @@ long_description = f"""
 
 setup(
     name='flake8-plone-hasattr',
-    version='0.3.dev0',
+    version='1.0.0',
     description=short_description,
     long_description=long_description,
     # Get more from https://pypi.org/classifiers/

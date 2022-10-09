@@ -3,8 +3,8 @@
 Changelog
 =========
 
-0.3 (unreleased)
-----------------
+1.0.0 (2022-10-09)
+------------------
 
 - Pin dependencies. [gforcada]
 
