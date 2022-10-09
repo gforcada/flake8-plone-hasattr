@@ -1,14 +1,12 @@
-# -*- coding: utf-8 -*-
-from flake8_plone_hasattr import PloneHasattrChecker
-from tempfile import mkdtemp
-
 import os
-import mock
 import unittest
+from tempfile import mkdtemp
+from unittest import mock
+
+from flake8_plone_hasattr import PloneHasattrChecker
 
 
 class TestFlake8PloneAPI(unittest.TestCase):
-
     def _given_a_file_in_test_dir(self, contents):
         test_dir = os.path.realpath(mkdtemp())
         file_path = os.path.join(test_dir, 'test.py')
@@ -18,18 +16,14 @@ class TestFlake8PloneAPI(unittest.TestCase):
         return file_path
 
     def test_no_hasattr_everything_is_fine(self):
-        file_path = self._given_a_file_in_test_dir(
-            'import os'
-        )
+        file_path = self._given_a_file_in_test_dir('import os')
         checker = PloneHasattrChecker(None, file_path)
         ret = list(checker.run())
         self.assertEqual(len(ret), 0)
 
     def test_hasattr(self):
         file_path = self._given_a_file_in_test_dir(
-            'a = 3\n'
-            '\n'
-            '    hasattr(a, "max")\n'
+            'a = 3\n' '\n' '    hasattr(a, "max")\n'
         )
         checker = PloneHasattrChecker(None, file_path)
         ret = list(checker.run())

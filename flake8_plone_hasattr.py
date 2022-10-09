@@ -1,6 +1,4 @@
-# -*- coding: utf-8 -*-
 import re
-
 
 try:
     from flake8.engine import pep8 as stdin_utils
@@ -11,7 +9,7 @@ except ImportError:
 HASATTR_RE = re.compile(r'(^|.*\s)(?P<h>hasattr)\(.+\).*')
 
 
-class PloneHasattrChecker(object):
+class PloneHasattrChecker:
     name = 'flake8_plone_hasattr'
     version = '0.2'
     message = 'P002 found "hasattr", consider replacing it with "getattr" to avoid exception swallowing'

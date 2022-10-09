@@ -2,6 +2,7 @@ from setuptools import setup
 
 short_description = 'Checks for hasattr, which is considered harmful in Plone projects.'
 
+
 def read_file(filename):
     with open(filename) as file_obj:
         file_contents = file_obj.read()
@@ -46,7 +47,7 @@ setup(
     author_email='gil.gnome@gmail.com',
     url='https://github.com/gforcada/flake8-plone-hasattr',
     license='GPL version 2',
-    py_modules=['flake8_plone_hasattr', ],
+    py_modules=['flake8_plone_hasattr'],
     include_package_data=True,
     test_suite='run_tests',
     zip_safe=False,
