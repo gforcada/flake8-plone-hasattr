@@ -48,7 +48,3 @@ class TestFlake8PloneAPI(unittest.TestCase):
         self.assertEqual(ret[0][0], 3)
         self.assertEqual(ret[0][1], 4)
         self.assertTrue(ret[0][2].startswith('P002 found '))
-
-
-if __name__ == '__main__':
-    unittest.main()
