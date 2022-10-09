@@ -10,6 +10,8 @@ Changelog
 
 - Test/QA with GitHub actions. [gforcada]
 
+- Overhaul testing. [gforcada]
+
 0.2.post0 (2017-05-31)
 ----------------------
 - Release universal wheels
