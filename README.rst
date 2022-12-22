@@ -35,11 +35,25 @@ Take, for instance, the following code:
     True
     >>> hasattr(bar, 'my_attr')
     False
+
+One should rather do:
+
+.. code-block:: python
+
     >>> getattr(bar, 'my_attr', None)
     Traceback (most recent call last):
       File "<stdin>", line 1, in <module>
       File "<stdin>", line 4, in my_attr
     ValueError: nope, nope, nope
+
+Or in case you want to handle an exception:
+
+.. code-block:: python
+
+    >>> try:
+    ...     value = getattr(bar, 'my_attr', None)
+    ... exception ValueError:
+    ...     value = None
 
 This plugin is based on a python checker that was in `plone.recipe.codeanalysis`_.
 
