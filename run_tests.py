@@ -1,8 +1,8 @@
-import os
-import textwrap
+from flake8_plone_hasattr import PloneHasattrChecker
 from unittest import mock
 
-from flake8_plone_hasattr import PloneHasattrChecker
+import os
+import textwrap
 
 
 def write_python_file(tmpdir, content):
