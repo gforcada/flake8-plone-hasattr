@@ -6,7 +6,8 @@ Changelog
 1.1.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Drop python 3.8 and add python 3.13.
+  [gforcada]
 
 
 1.1.1 (2023-11-03)
