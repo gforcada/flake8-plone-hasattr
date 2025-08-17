@@ -12,7 +12,7 @@ description = "Checks for hasattr, which is considered harmful in Plone projects
 keywords = ["pep8", "flake8", "python", "plone", ]
 license = {file = "LICENSE"}
 readme = "README.rst"
-requires-python = ">=3.8"
+requires-python = ">=3.9"
 classifiers = [
         "Development Status :: 5 - Production/Stable",
         "Environment :: Console",
