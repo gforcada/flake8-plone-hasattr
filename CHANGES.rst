@@ -6,8 +6,7 @@ Changelog
 1.2.1 (unreleased)
 ------------------
 
-- Allow isort version 7.
-  [gforcada]
+- Nothing changed yet.
 
 
 1.2.0 (2025-10-25)
