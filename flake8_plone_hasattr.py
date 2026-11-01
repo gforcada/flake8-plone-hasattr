@@ -2,7 +2,6 @@ from flake8 import utils as stdin_utils
 
 import re
 
-
 HASATTR_RE = re.compile(r'(^|.*\s)(?P<h>hasattr)\(.+\).*')
 
 
